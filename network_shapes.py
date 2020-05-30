@@ -12,7 +12,7 @@ Versions: 1.0    The Original Version
           1.3    Bug fix for wrong output
           2.0    Added different sampling methods
           2.1    Added graph2vec as an embedding method
-          2.2    Added 
+          2.2    Added fitting methods
 '''
 
 from sys import argv
@@ -50,11 +50,11 @@ if __name__ == '__main__':
                         help='Input edge list file name.')
 
     parser.add_argument('-step', required=False,
-                        default=10,
+                        default=20,
                         help='Sampling proportion step (percentage)')
 
     parser.add_argument('-t', required=False,
-                        default=10,
+                        default=5,
                         help='Number of samples for each sampling proporation"')
 
     parser.add_argument('-embedding', required=False,

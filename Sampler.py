@@ -12,7 +12,7 @@ class Sampler:
         self.nos = int(args.t)
         self.sampling_method = args.sampling
         self.embedding_method = args.embedding
-        self.directory = 'downloads' + '/' + self.network_name + '/'
+        self.directory = self.network_name + '/'
 
 
     def sample(self):
