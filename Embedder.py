@@ -10,12 +10,12 @@ from joblib import Parallel, delayed
 class Embedder:
     def __init__(self, args):
         self.args = args
-        self.uid = args.id
+        self.network_name = args.name
         self.step = int(args.step)
         self.nos = int(args.t)
         self.sampling_method = args.sampling
         self.embedding_method = args.embedding
-        self.directory = 'downloads' + '/' + self.uid + '/'
+        self.directory = self.network_name + '/'
 
 
     def embed(self):

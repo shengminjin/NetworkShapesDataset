@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
-    uid = args.id
+    network_name = args.name
     step = int(args.step)
     nos = int(args.t)
     embedding_method = args.embedding
@@ -83,8 +83,6 @@ if __name__ == '__main__':
     fitting_method = args.fitting
 
 
-
-    network_name = 'downloads' + '/' + uid
     directory = network_name + '/'
     if os.path.isdir(directory):
         shutil.rmtree(directory)

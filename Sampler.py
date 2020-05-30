@@ -4,15 +4,15 @@ import networkx as nx
 class Sampler:
     def __init__(self, args):
         self.args = args
-        self.uid = args.id
-        self.edgelist = 'uploads' + '/' + args.file
+        self.network_name = args.name
+        self.edgelist = args.file
         self.G = nx.read_edgelist(self.edgelist, delimiter='\t')
         self.nodes = list(self.G.nodes())
         self.step = int(args.step)
         self.nos = int(args.t)
         self.sampling_method = args.sampling
         self.embedding_method = args.embedding
-        self.directory = 'downloads' + '/' + self.uid + '/'
+        self.directory = 'downloads' + '/' + self.network_name + '/'
 
 
     def sample(self):
