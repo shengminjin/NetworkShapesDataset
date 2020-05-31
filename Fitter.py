@@ -5,24 +5,27 @@ import glob
 class Fitter:
     def __init__(self, args):
         self.args = args
-        self.netowrk_name = args.name
+        self.network_name = args.name
         self.step = int(args.step)
         self.nos = int(args.t)
         self.sampling_method = args.sampling
         self.embedding_method = args.embedding
         self.fitting_method = args.fitting
-        self.directory = self.network_name + '/'
+        self.directory = self.network_name + '/' + self.embedding_method + '/'
+        if os.path.isdir(self.directory):
+            shutil.rmtree(self.directory)
+        os.mkdir(self.directory)
         self.zip = args.zip
 
 
     def fit(self, points):
 
-        if self.fitting_method == 'convexhull':
-            self.create_kronecker_hull(self.directory, points, self.network_name)
-        elif self.fitting_method == 'cuboid':
-            self.create_cuboid(self.directory, points, self.network_name)
-        elif self.fitting_method == 'sphere':
-            self.create_sphere(self.directory, points, self.network_name)
+        # if self.fitting_method == 'convexhull':
+        self.create_kronecker_hull(self.directory, points, self.network_name)
+        # elif self.fitting_method == 'cuboid':
+        self.create_cuboid(self.directory, points, self.network_name)
+        # elif self.fitting_method == 'sphere':
+        self.create_sphere(self.directory, points, self.network_name)
 
         if self.zip:
             # makes new directory network_shape and copies them to it

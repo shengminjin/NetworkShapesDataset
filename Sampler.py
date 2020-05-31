@@ -16,11 +16,11 @@ class Sampler:
 
 
     def sample(self):
-        if self.embedding_method == 'kroneckerPoint':
-            nx.write_edgelist(self.G.to_directed(), self.directory + '100.edgelist', delimiter='\t', data=False)
-        elif self.embedding_method == 'graph2vec':
-            json_path = self.directory + '100.json'
-            self.write_json(json_path, self.G.to_directed())
+        # if self.embedding_method == 'kroneckerPoint':
+        nx.write_edgelist(self.G.to_directed(), self.directory + '100.edgelist', delimiter='\t', data=False)
+        #elif self.embedding_method == 'graph2vec':
+        json_path = self.directory + '100.json'
+        self.write_json(json_path, self.G.to_directed())
         # get sample graphs
         for p in range(self.step, 100, self.step):
             print('Sampling ' + str(p) + '% subgraphs')
@@ -94,12 +94,12 @@ class Sampler:
         self.write(sub_g, directory, p, i)
 
     def write(self, sub_g, directory, p, i):
-        if self.embedding_method == 'kroneckerPoint':
-            nx.write_edgelist(sub_g, directory + str(p) + '/'
+        # if self.embedding_method == 'kroneckerPoint':
+        nx.write_edgelist(sub_g, directory + str(p) + '/'
                               + str(i) + '.edgelist', delimiter='\t', data=False)
-        elif self.embedding_method == 'graph2vec':
-            json_path = directory + str(p) + '/' + str(i) + '.json'
-            self.write_json(json_path, sub_g)
+        # elif self.embedding_method == 'graph2vec':
+        json_path = directory + str(p) + '/' + str(i) + '.json'
+        self.write_json(json_path, sub_g)
 
     def write_json(self, json_path, graph):
         with open(json_path, 'w') as output_file:

@@ -109,7 +109,7 @@ def run_graph2vec(args):
     Main function to read the graph list, extract features, learn the embedding and save it.
     :param args: Object with the arguments.
     """
-    directory = 'downloads' + '/' + args.id + '/'
+    directory = args.name + '/'
 
     dimensions = 3
     workers = 4

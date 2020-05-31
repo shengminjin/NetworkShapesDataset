@@ -90,15 +90,24 @@ if __name__ == '__main__':
 
     print("Network name: {}".format(network_name))
     print("Input edge file: {}".format(args.file))
-    print("Sampling proportion step: {}".format(args.step))
-    print("Number of samples for each sampling proportion: {}".format(args.t))
-    print("Embedding Method: {}".format(args.embedding))
+    # print("Sampling proportion step: {}".format(args.step))
+    # print("Number of samples for each sampling proportion: {}".format(args.t))
+    # print("Embedding Method: {}".format(args.embedding))
     print("Sampling Method: {}".format(args.sampling))
-    print("Fitting Method: {}".format(args.fitting))
+    # print("Fitting Method: {}".format(args.fitting))
 
 
     sampler = Sampler(args)
     sampler.sample()
+
+    # Embedding with graph2vec
+    embedder = Embedder(args)
+    points = embedder.embed()
+    fitter = Fitter(args)
+    fitter.fit(points)
+
+    # Embedding with kron
+    args.embedding = 'kroneckerPoint'
     embedder = Embedder(args)
     points = embedder.embed()
     fitter = Fitter(args)
