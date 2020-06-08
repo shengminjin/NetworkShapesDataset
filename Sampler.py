@@ -102,11 +102,12 @@ class Sampler:
         self.write_json(json_path, sub_g)
 
     def write_json(self, json_path, graph):
+        length = len(graph.edges())
         with open(json_path, 'w') as output_file:
             output_file.write('{"edges": [')
             for index, edge in enumerate(graph.edges()):
                 n1, n2 = edge
-                if index < len(graph.edges()) - 1:
+                if index < length - 1:
                     output_file.write('[{}, {}],'.format(n1, n2))
                 else:
                     output_file.write('[{}, {}]'.format(n1, n2))
