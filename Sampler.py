@@ -1,5 +1,8 @@
 import random, os
 import networkx as nx
+import os.path
+from os import path
+
 
 class Sampler:
     def __init__(self, args):
@@ -17,15 +20,21 @@ class Sampler:
 
     def sample(self):
         # if self.embedding_method == 'kroneckerPoint':
-        nx.write_edgelist(self.G.to_directed(), self.directory + '100.edgelist', delimiter='\t', data=False)
+        if not path.isfile(self.directory + '100.edgelist'):
+            nx.write_edgelist(self.G.to_directed(), self.directory + '100.edgelist', delimiter='\t', data=False)
         #elif self.embedding_method == 'graph2vec':
         json_path = self.directory + '100.json'
-        self.write_json(json_path, self.G.to_directed())
+        if not path.isfile(json_path):
+            self.write_json(json_path, self.G.to_directed())
         # get sample graphs
         for p in range(self.step, 100, self.step):
             print('Sampling ' + str(p) + '% subgraphs')
-            os.mkdir(self.directory + str(p) + '/')
+            if not os.path.isdir(self.directory + str(p) + '/'):
+                os.mkdir(self.directory + str(p) + '/')
             for i in range(0, self.nos):
+                sample_file = self.directory + str(p) + '/' + str(i) + '.edgelist'
+                if path.isfile(sample_file):
+                    continue
                 if self.sampling_method == 'randomEdge':
                     self.random_edge_sampling(self.directory, p, i)
                 elif self.sampling_method == 'randomNode':

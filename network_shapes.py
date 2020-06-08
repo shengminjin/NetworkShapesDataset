@@ -84,9 +84,10 @@ if __name__ == '__main__':
 
 
     directory = network_name + '/'
-    if os.path.isdir(directory):
-        shutil.rmtree(directory)
-    os.mkdir(directory)
+#    if os.path.isdir(directory):
+#        shutil.rmtree(directory)
+    if not os.path.isdir(directory):
+         os.mkdir(directory)
 
     print("Network name: {}".format(network_name))
     print("Input edge file: {}".format(args.file))
