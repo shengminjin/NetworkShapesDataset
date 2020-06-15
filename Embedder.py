@@ -66,7 +66,7 @@ class Embedder:
         input_file_path = kronfit_job[0]
         output_file_path = kronfit_job[1]
         if not os.path.exists(output_file_path):
-            cmd = 'kronfit', '-i:' + input_file_path, '-n0:2', '-gi:20', '-o:' + output_file_path
+            cmd = 'kronfit', '-i:' + input_file_path, '-n0:2', '-gi:100', '-o:' + output_file_path
             subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()
 
     def read_kron_point(self, output_file):
